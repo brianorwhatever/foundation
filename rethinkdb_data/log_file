@@ -1,0 +1,45 @@
+2016-03-03T10:58:51.289037482 0.062944s notice: Recursively removing directory /home/brianorwhatever/foundation/rethinkdb_data/tmp
+2016-03-03T10:58:51.294062846 0.067972s notice: Initializing directory /home/brianorwhatever/foundation/rethinkdb_data
+2016-03-03T10:58:51.294181200 0.068087s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/brianorwhatever/foundation/rethinkdb_data' did not already exist or is empty.)
+2016-03-03T10:58:51.294193102 0.068099s notice: Running rethinkdb 2.2.5~0trusty (GCC 4.8.2)...
+2016-03-03T10:58:51.296372510 0.070280s notice: Running on Linux 3.19.0-25-generic x86_64
+2016-03-03T10:58:51.296903025 0.070809s notice: Loading data from directory /home/brianorwhatever/foundation/rethinkdb_data
+2016-03-03T10:58:51.351701456 0.125609s info: Automatically using cache size of 293 MB
+2016-03-03T10:58:51.352421542 0.126327s notice: Listening for intracluster connections on port 29015
+2016-03-03T10:58:51.357596884 0.131503s notice: Listening for client driver connections on port 28015
+2016-03-03T10:58:51.357796734 0.131702s notice: Listening for administrative HTTP connections on port 8080
+2016-03-03T10:58:51.357797287 0.131703s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-03-03T10:58:51.357798203 0.131704s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-03-03T10:58:51.357799091 0.131705s notice: Server ready, "ubuntu_h3d" b7e0f7c8-cf6b-40a3-85e5-d6772cf10a92
+2016-03-03T10:59:07.221562656 15.995469s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2016-03-03T10:59:07.221626027 15.995532s notice: Shutting down client connections...
+2016-03-03T10:59:07.221662562 15.995568s notice: All client connections closed.
+2016-03-03T10:59:07.221663427 15.995569s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-03-03T10:59:07.225210768 15.999116s notice: Storage engine shut down.
+2016-03-03T10:59:09.827003803 0.030301s notice: Running rethinkdb 2.2.5~0trusty (GCC 4.8.2)...
+2016-03-03T10:59:09.830497337 0.033794s notice: Running on Linux 3.19.0-25-generic x86_64
+2016-03-03T10:59:09.830560758 0.033856s notice: Loading data from directory /home/brianorwhatever/foundation/rethinkdb_data
+2016-03-03T10:59:09.876477404 0.079774s info: Automatically using cache size of 292 MB
+2016-03-03T10:59:09.877232948 0.080528s notice: Listening for intracluster connections on port 29015
+2016-03-03T10:59:09.888873580 0.092169s notice: Listening for client driver connections on port 28015
+2016-03-03T10:59:09.889186650 0.092482s notice: Listening for administrative HTTP connections on port 8080
+2016-03-03T10:59:09.889189403 0.092484s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-03-03T10:59:09.889189948 0.092485s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-03-03T10:59:09.889191347 0.092486s notice: Server ready, "ubuntu_h3d" b7e0f7c8-cf6b-40a3-85e5-d6772cf10a92
+2016-03-03T11:00:32.722985914 82.926281s info: Table efae83e5-c547-486a-8ab6-4c5056972f22: Added replica on this server.
+2016-03-03T11:00:32.743717697 82.947013s info: Table c2bb9282-3b1a-41cd-8fc5-911c6f94d3fc: Added replica on this server.
+2016-03-03T11:00:33.735467455 83.938763s info: Table efae83e5-c547-486a-8ab6-4c5056972f22: Starting a new Raft election for term 1.
+2016-03-03T11:00:33.738523115 83.941818s info: Table efae83e5-c547-486a-8ab6-4c5056972f22: This server is Raft leader for term 1. Latest log index is 0.
+2016-03-03T11:00:34.254229741 84.457525s info: Table c2bb9282-3b1a-41cd-8fc5-911c6f94d3fc: Starting a new Raft election for term 1.
+2016-03-03T11:00:34.257007005 84.460302s info: Table c2bb9282-3b1a-41cd-8fc5-911c6f94d3fc: This server is Raft leader for term 1. Latest log index is 0.
+2016-03-03T11:01:21.733700641 131.936996s notice: Removing file /home/brianorwhatever/foundation/rethinkdb_data/c2bb9282-3b1a-41cd-8fc5-911c6f94d3fc
+2016-03-03T11:01:21.733835794 131.937131s info: Table c2bb9282-3b1a-41cd-8fc5-911c6f94d3fc: Deleted the table.
+2016-03-03T11:01:21.734109123 131.937404s notice: Removing file /home/brianorwhatever/foundation/rethinkdb_data/efae83e5-c547-486a-8ab6-4c5056972f22
+2016-03-03T11:01:21.734110828 131.937406s info: Table efae83e5-c547-486a-8ab6-4c5056972f22: Deleted the table.
+2016-03-03T11:01:31.843973250 142.047268s info: Table 91bec886-c9ea-4fd8-9d15-896e658c4c0c: Added replica on this server.
+2016-03-03T11:01:33.207622167 143.410917s info: Table 91bec886-c9ea-4fd8-9d15-896e658c4c0c: Starting a new Raft election for term 1.
+2016-03-03T11:01:33.211346031 143.414641s info: Table 91bec886-c9ea-4fd8-9d15-896e658c4c0c: This server is Raft leader for term 1. Latest log index is 0.
+2016-03-03T11:39:29.719393463 2419.922689s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: Added replica on this server.
+2016-03-03T11:39:31.242197653 2421.445493s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: Starting a new Raft election for term 1.
+2016-03-03T11:39:31.247181346 2421.450476s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: This server is Raft leader for term 1. Latest log index is 0.
+2016-03-03T11:39:31.805285492 2422.008581s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: Configuration is changing.
