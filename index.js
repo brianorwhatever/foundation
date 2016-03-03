@@ -11,8 +11,6 @@ var app = koa();
 // Load Config
 var config    = require(__dirname+"/config.js");
 
-// Load Libraries
-var db        = require('./lib/db');
 
 // Static Content
 app.use(serve(__dirname+'/public'));
