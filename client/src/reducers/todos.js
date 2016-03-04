@@ -24,21 +24,23 @@ const todos = (state = initialState, action) => {
         didInvalidate: false,
         items: action.todos,
         lastUpdated: action.receivedAt
-      })
-    // case types.ADD_TODO:
-    //   return [
-    //     ...state,
-    //     {
-    //       id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-    //       done: false,
-    //       task: action.text
-    //     }];
-    // case types.COMPLETE_TODO:
-    //   return state.map(todo =>
-    //     todo.id === action.id ?
-    //       Object.assign({}, todo, { done: !todo.done }) :
-    //       todo
-    //   )
+      });
+    case actions.ADD_TODO:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        items: [...state.items, action.json],
+        lastUpdated: action.receivedAt
+      });
+    case actions.COMPLETE_TODO:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        items: state.items.map(todo =>
+          todo.id === action.todo.id ?
+          action.todo : todo
+        )
+      });
     default:
       return state;
   }

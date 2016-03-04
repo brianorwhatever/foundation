@@ -23,8 +23,8 @@ app.use(createConnection);
 
 // Setup koa-router
 router.get('/todo/get', get);
-router.put('/todo/new', create);
-router.post('/todo/update', update);
+router.post('/todo/new', create);
+router.put('/todo/update', update);
 router.post('/todo/delete', del);
 app
   .use(router.routes())
@@ -66,7 +66,6 @@ function* get(next) {
 function* create(next) {
     try{
         var todo = yield parse(this);
-        console.log(this.text);
 
         todo.createdAt = r.now(); // Set the field `createdAt` to the current time
         var result = yield r.table('todos').insert(todo, {returnChanges: true}).run(this._rdbConn);
@@ -90,7 +89,7 @@ function* update(next) {
             throw new Error("The todo must have a field `id`.");
         }
 
-        var result = yield r.table('todos').get(todo.id).update(todo, {returnChanges: true}).run(this._rdbConn);
+        var result = yield r.table('todos').get(todo.id).update(todo, {returnChanges: "always"}).run(this._rdbConn);
         this.body = JSON.stringify(result.changes[0].new_val);
     }
     catch(e) {

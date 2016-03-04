@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import * as TodoActions from '../actions';
 
@@ -16,12 +15,12 @@ class Todos extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(TodoActions.fetchTodosIfNeeded());
+    dispatch(TodoActions.sendFetchTodos());
   }
 
-  handleCompleteTodo(id) {
+  handleCompleteTodo(todo) {
     const { dispatch } = this.props;
-    dispatch(TodoActions.completeTodo(id));
+    dispatch(TodoActions.toggleTodoComplete(todo));
   }
 
   handleSubmit(text) {
