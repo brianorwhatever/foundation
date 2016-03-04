@@ -43,3 +43,8 @@
 2016-03-03T11:39:31.242197653 2421.445493s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: Starting a new Raft election for term 1.
 2016-03-03T11:39:31.247181346 2421.450476s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: This server is Raft leader for term 1. Latest log index is 0.
 2016-03-03T11:39:31.805285492 2422.008581s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: Configuration is changing.
+2016-03-04T00:19:09.942763298 38298.954110s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2016-03-04T00:19:09.945234624 38298.956580s notice: Shutting down client connections...
+2016-03-04T00:19:09.946045125 38298.957390s notice: All client connections closed.
+2016-03-04T00:19:09.946047262 38298.957392s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-03-04T00:19:09.969676481 38298.981022s notice: Storage engine shut down.
