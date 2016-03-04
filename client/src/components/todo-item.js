@@ -6,13 +6,17 @@ class TodoItem extends React.Component {
         this.props.onClick(this.props.todo);
     }
 
+    handleDelete() {
+      this.props.onDelete(this.props.todo.id);
+    }
+
     render() {
         const { todo } = this.props;
         const classes = classNames('todo-item', {
             'done' : todo.done
         });
         return (
-            <li className={classes} onClick={this.handleClick.bind(this)}>{todo.todo}</li>
+            <li><span className={classes} onClick={this.handleClick.bind(this)}>{todo.todo}</span><span onClick={this.handleDelete.bind(this)}>X</span></li>
         );
     }
 }

@@ -38,8 +38,15 @@ function addTodo(json) {
 
 /* Remove */
 export function removeTodo(id) {
-    return { type: actions.REMOVE_TODO, id }
+  return dispatch => {
+    fetch(api.REMOVE_TODO.url, Object.assign({}, { method: api.REMOVE_TODO.method, body: JSON.stringify({ id: id }) }, fetchHeaders))
+      .then(req => req.json())
+      .then(json => dispatch(removeTodoAction(id)))
+  }
 }
+function removeTodoAction(id) {
+  return { type: actions.REMOVE_TODO, id }
+};
 
 /* Update */
 export function toggleTodoComplete(todo) {

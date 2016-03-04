@@ -41,6 +41,14 @@ const todos = (state = initialState, action) => {
           action.todo : todo
         )
       });
+    case actions.REMOVE_TODO:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        items: state.items.filter(todo =>
+          todo.id !== action.id
+        )
+      });
     default:
       return state;
   }

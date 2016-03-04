@@ -11,6 +11,7 @@ class Todos extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCompleteTodo = this.handleCompleteTodo.bind(this);
+    this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
   }
 
   componentDidMount() {
@@ -28,14 +29,18 @@ class Todos extends Component {
     dispatch(TodoActions.sendAddTodo(text));
   }
 
+  handleDeleteTodo(id) {
+    const { dispatch } = this.props;
+    dispatch(TodoActions.removeTodo(id));
+  }
+
   render() {
     const { todos } = this.props;
-    console.log(todos);
     return (
       <div>
         <ul>
           {todos.map((todo, index) => {
-            return <TodoItem key={index} todo={todo} onClick={this.handleCompleteTodo}/>;
+            return <TodoItem key={index} todo={todo} onClick={this.handleCompleteTodo} onDelete={this.handleDeleteTodo}/>;
           })}
         </ul>
         <TodoInput onSubmit={this.handleSubmit}/>

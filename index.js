@@ -107,7 +107,7 @@ function* del(next) {
             throw new Error("The todo must have a field `id`.");
         }
         var result = yield r.table('todos').get(todo.id).delete().run(this._rdbConn);
-        this.body = "";
+        this.body = JSON.stringify({success: true});
     }
     catch(e) {
         this.status = 500;
