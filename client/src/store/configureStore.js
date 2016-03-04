@@ -1,8 +1,17 @@
-import { createStore, combineReducers } from 'redux';
-import todos from '../reducers/todos';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
+import rootReducer from '../reducers/todos';
 
-const store = combineReducers({
-  todos
-});
+const loggerMiddlerware = createLogger();
 
-export default createStore(store);
+export default function configureStore(initialState) {
+  return createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddlerware
+    )
+  )
+}

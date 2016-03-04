@@ -3,10 +3,13 @@ var r         = require('rethinkdb');
 var serve     = require('koa-static');
 var parse     = require('co-body');
 var router    = require('koa-router')();
+var cors      = require('koa-cors');
 var http      = require('http');
 
 // Initialize App
 var app = koa();
+
+app.use(cors());
 
 // Load Config
 var config    = require(__dirname+"/config.js");

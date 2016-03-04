@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,35 +8,68 @@ import TodoInput from './todo-input';
 import TodoItem from './todo-item';
 
 class Todos extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCompleteTodo = this.handleCompleteTodo.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(TodoActions.fetchTodosIfNeeded());
+  }
+
+  handleCompleteTodo(id) {
+    const { dispatch } = this.props;
+    dispatch(TodoActions.completeTodo(id));
+  }
+
+  handleSubmit(text) {
+    const { dispatch } = this.props;
+    dispatch(TodoActions.addTodo(text));
+  }
+
   render() {
-    const { actions, todos } = this.props;
+    const { todos } = this.props;
+    console.log(todos);
     return (
       <div>
         <ul>
           {todos.map((todo, index) => {
-            return <TodoItem key={index} todo={todo} onClick={actions.completeTodo}/>;
+            return <TodoItem key={index} todo={todo} onClick={this.handleCompleteTodo}/>;
           })}
         </ul>
-        <TodoInput onSubmit={actions.addTodo}/>
+        <TodoInput onSubmit={this.handleSubmit}/>
       </div>
     );
   }
 }
 
+Todos.propTypes = {
+  todos: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  lastUpdated: PropTypes.number,
+  dispatch: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (
   state
 ) => {
+  const { todos } = state;
+  const {
+    isFetching,
+    lastUpdated,
+    items
+  } = todos || {
+    isFetching: true,
+    items: []
+  }
+
   return {
-    todos: state.todos
-  };
+    todos: items,
+    isFetching,
+    lastUpdated
+  }
 };
 
-const mapDispatchToProps = (
-  dispatch
-) => {
-  return {
-    actions: bindActionCreators(TodoActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+export default connect(mapStateToProps)(Todos);

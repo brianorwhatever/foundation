@@ -1,37 +1,51 @@
-import * as types from '../constants/ActionTypes';
+import { combineReducers } from 'redux';
+import * as actions from '../constants/ActionTypes';
 
-const initialState = [
-    {
-      id: 0,
-      task: "type some todossss",
-      done: false
-    },
-    {
-      id: 1,
-      task: "type some more todos",
-      done: false
-    }
-]
+const initialState = {
+  isFetching: false,
+  didInvalidate: false,
+  items: []
+}
 
 const todos = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_TODO:
-      return [
-        ...state,
-        {
-          id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-          done: false,
-          task: action.text
-        }];
-    case types.COMPLETE_TODO:
-      return state.map(todo =>
-        todo.id === action.id ?
-          Object.assign({}, todo, { done: !todo.done }) :
-          todo
-      )
+    case actions.INVALIDATE_TODOS:
+      return Object.assign({}, state, {
+        didInvalidate: true
+      });
+    case actions.REQUEST_TODOS:
+      return Object.assign({}, state, {
+        isFetching: true,
+        didInvalidate: true
+      });
+    case actions.RECEIVE_TODOS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        items: action.todos,
+        lastUpdated: action.receivedAt
+      })
+    // case types.ADD_TODO:
+    //   return [
+    //     ...state,
+    //     {
+    //       id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+    //       done: false,
+    //       task: action.text
+    //     }];
+    // case types.COMPLETE_TODO:
+    //   return state.map(todo =>
+    //     todo.id === action.id ?
+    //       Object.assign({}, todo, { done: !todo.done }) :
+    //       todo
+    //   )
     default:
       return state;
   }
 };
 
-export default todos;
+const rootReducer = combineReducers({
+  todos
+});
+
+export default rootReducer;

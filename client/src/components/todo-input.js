@@ -5,13 +5,13 @@ class TodoInput extends Component {
         super(props);
         this.state = { value: '' };
     }
-    
+
     onChange(event) {
         this.setState({
             value: event.target.value
         });
     }
-    
+
     handleSubmit(e) {
         const text = e.target.value.trim();
         if (e.which === 13) {
@@ -19,7 +19,7 @@ class TodoInput extends Component {
             this.setState({ value: '' })
         }
     }
-    
+
     render() {
         return (
             <input
@@ -29,10 +29,6 @@ class TodoInput extends Component {
             />
         );
     }
-}
-
-TodoInput.propTypes = {
-  onSubmit: PropTypes.func.isRequired
 }
 
 export default TodoInput;
