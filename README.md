@@ -8,10 +8,11 @@ React/Redux/Middleware from http://redux.js.org/docs/advanced/ExampleRedditAPI.h
 Tech used:
 * Node.js
  * Koa
-  * co-body (parseing)
+  * co-body (parsing)
  * RethinkDB
 * React
 * Redux
+* [Fetch](https://github.com/github/fetch)
 
 # to start
 * rethinkdb

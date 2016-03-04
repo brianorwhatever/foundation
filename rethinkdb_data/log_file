@@ -48,3 +48,17 @@
 2016-03-04T00:19:09.946045125 38298.957390s notice: All client connections closed.
 2016-03-04T00:19:09.946047262 38298.957392s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
 2016-03-04T00:19:09.969676481 38298.981022s notice: Storage engine shut down.
+2016-03-04T10:32:56.967521355 0.039848s notice: Running rethinkdb 2.2.5~0trusty (GCC 4.8.2)...
+2016-03-04T10:32:56.970408115 0.042733s notice: Running on Linux 3.19.0-25-generic x86_64
+2016-03-04T10:32:56.970505174 0.042828s notice: Loading data from directory /home/brianorwhatever/foundation/rethinkdb_data
+2016-03-04T10:32:56.989528097 0.061853s info: Automatically using cache size of 695 MB
+2016-03-04T10:32:56.990127400 0.062451s notice: Listening for intracluster connections on port 29015
+2016-03-04T10:32:57.030883182 0.103207s notice: Listening for client driver connections on port 28015
+2016-03-04T10:32:57.031540058 0.103863s notice: Listening for administrative HTTP connections on port 8080
+2016-03-04T10:32:57.031545939 0.103869s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-03-04T10:32:57.031546340 0.103869s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-03-04T10:32:57.031546558 0.103870s notice: Server ready, "ubuntu_h3d" b7e0f7c8-cf6b-40a3-85e5-d6772cf10a92
+2016-03-04T10:32:58.530974331 1.603298s info: Table 91bec886-c9ea-4fd8-9d15-896e658c4c0c: Starting a new Raft election for term 2.
+2016-03-04T10:32:58.536349624 1.608673s info: Table 91bec886-c9ea-4fd8-9d15-896e658c4c0c: This server is Raft leader for term 2. Latest log index is 3.
+2016-03-04T10:32:58.807614604 1.879939s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: Starting a new Raft election for term 2.
+2016-03-04T10:32:58.810724137 1.883048s info: Table 6861e325-211e-4c09-a30c-281b38b0444c: This server is Raft leader for term 2. Latest log index is 4.

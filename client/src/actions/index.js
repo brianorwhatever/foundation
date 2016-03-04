@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch';
 import * as actions from '../constants/ActionTypes';
 import * as api from '../constants/Api';
 
+const fetchHeaders = { headers: { 'Content-Type' : 'application/json' } };
+
 function requestTodos() {
   return { type: actions.REQUEST_TODOS }
 }
@@ -46,7 +48,7 @@ export function fetchTodosIfNeeded() {
 
 export function sendAddTodo(text) {
   return dispatch => {
-    fetch(api.CREATE_TODO.url, { method: api.CREATE_TODO.method, todo: text })
+    fetch(api.CREATE_TODO.url, Object.assign({}, { method: api.CREATE_TODO.method, body: JSON.stringify({ todo: text }) }, fetchHeaders))
       .then(req => req.json())
       .then(json => dispatch(addTodo(json)))
   }
