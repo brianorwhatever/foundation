@@ -7,6 +7,12 @@ function requestTodos() {
   return { type: actions.REQUEST_TODOS }
 }
 
+function addTodo(json) {
+  console.log('adding: ');
+  console.log(json);
+  return { type: actions.ADD_TODO, json }
+}
+
 function receiveTodos(json) {
   console.log('received todos:');
   console.log(json);
@@ -16,10 +22,10 @@ function receiveTodos(json) {
   }
 }
 
-function fetchTodos() {
+function sendFetchTodos() {
   return dispatch => {
     dispatch(requestTodos());
-    return fetch(api.GET_TODOS)
+    return fetch(api.GET_TODOS.url, { method: api.GET_TODOS.method })
       .then(req => req.json())
       .then(json => dispatch(receiveTodos(json)))
   }
@@ -33,13 +39,17 @@ function shouldFetchTodos(state) {
 export function fetchTodosIfNeeded() {
   return (dispatch, getState) => {
     if(shouldFetchTodos(getState())) {
-      return dispatch(fetchTodos());
+      return dispatch(sendFetchTodos());
     }
   }
 }
 
-export function addTodo(text) {
-  return { type: actions.ADD_TODO, text }
+export function sendAddTodo(text) {
+  return dispatch => {
+    fetch(api.CREATE_TODO.url, { method: api.CREATE_TODO.method, todo: text })
+      .then(req => req.json())
+      .then(json => dispatch(addTodo(json)))
+  }
 }
 
 export function removeTodo(id) {

@@ -66,6 +66,8 @@ function* get(next) {
 function* create(next) {
     try{
         var todo = yield parse(this);
+        console.log(this);
+        
         todo.createdAt = r.now(); // Set the field `createdAt` to the current time
         var result = yield r.table('todos').insert(todo, {returnChanges: true}).run(this._rdbConn);
 

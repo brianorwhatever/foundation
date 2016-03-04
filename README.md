@@ -8,6 +8,25 @@ React/Redux/Middleware from http://redux.js.org/docs/advanced/ExampleRedditAPI.h
 Tech used:
 * Node.js
  * Koa
+  * co-body (parseing)
  * RethinkDB
 * React
 * Redux
+
+# References
+* [A Comprehensive Guide to Test-First Development with Redux, React, and Immutable](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html#the-server-application), Thursday Sep 10 2015
+
+* [http://courses.reactjsprogram.com/courses/reactjsfundamentals/lectures/762618]
+
+** Koa **
+* [koajs.com](http://koajs.com/)
+* [github/koajs/examples](https://github.com/koajs/examples)
+
+** RethinkDB **
+* https://github.com/rethinkdb/rethinkdb-example-nodejs-chat
+* https://www.rethinkdb.com/docs/examples/node-todo-koa/
+* https://github.com/rethinkdb/rethinkdb-example-nodejs
+* https://github.com/rethinkdb/rethinkdb-example-nodejs
+
+# Interesting
+* [apex](https://github.com/apex/apex)

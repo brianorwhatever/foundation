@@ -26,7 +26,7 @@ class Todos extends Component {
 
   handleSubmit(text) {
     const { dispatch } = this.props;
-    dispatch(TodoActions.addTodo(text));
+    dispatch(TodoActions.sendAddTodo(text));
   }
 
   render() {
