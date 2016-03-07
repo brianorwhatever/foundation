@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <AppHeader title={'Todos App'} tagline={'sweet todos'}/>
+          <AppHeader title={'Todotoo'}/>
           <Todos />
         </div>
       </Provider>

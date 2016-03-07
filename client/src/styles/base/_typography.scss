@@ -1,0 +1,9 @@
+/**
+ * Basic typography style for copy text
+ */
+body {
+  color: $text-color;
+  font: normal 125% / 1.4 $text-font-stack;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Rubik:400,500,700);
