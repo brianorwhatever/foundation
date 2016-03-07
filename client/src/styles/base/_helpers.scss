@@ -2,6 +2,13 @@
 // This file contains CSS helper classes.
 // -----------------------------------------------------------------------------
 
+.wood {
+  background-image: url('../images/retina_wood.png');
+  border-radius: 3px;
+  border: 1px solid rgba(80,80,80,0.1);
+  box-shadow: 2px 2px 3px 1px rgba(0,0,0,0.15);
+}
+
 /**
  * Clear inner floats
  */
@@ -43,7 +50,7 @@
  * Shamelessly borrowed from HTML5Boilerplate:
  * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
  */
-.visually-hidden { 
+.visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;

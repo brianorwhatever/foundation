@@ -22,11 +22,13 @@ class TodoInput extends Component {
 
     render() {
         return (
-            <input
-                value={this.state.value}
-                onChange={this.onChange.bind(this)}
-                onKeyDown={this.handleSubmit.bind(this)}
-            />
+            <div className="wood todoinput">
+              <input
+                  value={this.state.value}
+                  onChange={this.onChange.bind(this)}
+                  onKeyDown={this.handleSubmit.bind(this)}
+              />
+            </div>
         );
     }
 }

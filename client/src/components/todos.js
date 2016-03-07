@@ -38,11 +38,11 @@ class Todos extends Component {
     const { todos } = this.props;
     return (
       <div>
-        <ul>
+        <div className="todos">
           {todos.map((todo, index) => {
             return <TodoItem key={index} todo={todo} onClick={this.handleCompleteTodo} onDelete={this.handleDeleteTodo}/>;
           })}
-        </ul>
+        </div>
         <TodoInput onSubmit={this.handleSubmit}/>
       </div>
     );

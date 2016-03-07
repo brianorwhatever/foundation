@@ -25,7 +25,9 @@
 
 // 5. Components
 @import
-  'components/button';
+  'components/button',
+  'components/todoitem',
+  'components/todoinput';
 
 // 6. Page-specific styles
 @import

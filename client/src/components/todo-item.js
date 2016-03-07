@@ -16,7 +16,11 @@ class TodoItem extends React.Component {
             'done' : todo.done
         });
         return (
-            <li><span className={classes} onClick={this.handleClick.bind(this)}>{todo.todo}</span><span onClick={this.handleDelete.bind(this)}>X</span></li>
+            <div className="todoitem wood">
+              <div className="delete">x</div>
+              <div className="item" onClick={this.handleClick.bind(this)}>{todo.todo}</div>
+              <div className="complete" onClick={this.handleDelete.bind(this)}>✓</div>
+            </div>
         );
     }
 }
