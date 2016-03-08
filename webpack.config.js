@@ -6,12 +6,14 @@ var host = process.env.IP || '127.0.0.1';
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
+    './client/favicon.ico',
     './client/src/styles/main.scss',
+    './client/index.html',
     'eventsource-polyfill', // necessary for hot reloading with IE
-    './client/src/index'
+    './client/src/index',
   ],
   output: {
-    path: __dirname,
+    path: __dirname + '/client/build',
     filename: 'bundle.js',
     publicPath: '/static/'
   },
@@ -21,14 +23,20 @@ module.exports = {
       loader: 'babel-loader',
       include: path.join(__dirname, 'client/src'),
       query: {
-        presets: [ 'es2015', 'react', 'react-hmre' ]
+        presets: [ 'es2015', 'react' ]
       }
+    }, {
+      test: /\.html$/,
+      loader: 'file'
     }, {
       test: /\.scss$/,
       loaders: ['style', 'css', 'sass']
     }, {
       test: /\.(png|jpg)$/,
       loader: 'url'
+    }, {
+      test: /\.ico$/,
+      loader: 'file'
     }]
   },
   resolve: {
