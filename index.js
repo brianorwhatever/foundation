@@ -89,11 +89,8 @@ function* update(next) {
     if ((todo == null) || (todo.id == null)) {
       throw new Error("The todo must have a field `id`.");
     }
-    if(todo.ip !== this.request.headers["x-forwarded-for"]) {
-      throw new Error("The todo does not belong to you");
-    }
 
-    var result = yield r.table('todos').get(todo.id).update(todo, {returnChanges: "always"}).run(this._rdbConn);
+    var result = yield r.table('todos').get(todo.id).filter({'ip': this.request.headers["x-forwarded-for"]}).update(todo, {returnChanges: "always"}).run(this._rdbConn);
     this.body = JSON.stringify(result.changes[0].new_val);
   }
   catch(e) {
@@ -110,11 +107,8 @@ function* del(next) {
     if ((todo == null) || (todo.id == null)) {
         throw new Error("The todo must have a field `id`.");
     }
-    if(todo.ip !== this.request.headers["x-forwarded-for"]) {
-      throw new Error("The todo does not belong to you");
-    }
 
-    var result = yield r.table('todos').get(todo.id).delete().run(this._rdbConn);
+    var result = yield r.table('todos').get(todo.id).filter({'ip': this.request.headers["x-forwarded-for"]}).delete().run(this._rdbConn);
     this.body = JSON.stringify({success: true});
   }
   catch(e) {
