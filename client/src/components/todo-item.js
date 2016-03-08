@@ -21,8 +21,8 @@ class TodoItem extends React.Component {
 
         return (
             <div className="todoitem wood">
-              <div className={todoClasses}><span className="todo-text">{todo.todo}</span></div>
               <div className={checkmarkClasses} onClick={this.handleClick.bind(this)}/>
+              <div className={todoClasses}><span className="todo-text">{todo.todo}</span></div>
               <div className="delete" onClick={this.handleDelete.bind(this)}/>
             </div>
         );
