@@ -51,7 +51,7 @@ function* createConnection(next) {
 // Retrieve all todos
 function* get(next) {
   try{
-    var cursor = yield r.table('todos').getAll(this.request.ip, {index: 'ip'}).run(this._rdbConn);
+    var cursor = yield r.table('todos').getAll(this.request.headers["x-forwarded-for"], {index: 'ip'}).run(this._rdbConn);
     var result = yield cursor.toArray();
     this.body = JSON.stringify(result);
   }
@@ -67,7 +67,7 @@ function* create(next) {
   try{
     var todo = yield parse(this);
 
-    todo.ip = this.request.ip;
+    todo.ip = this.request.headers["x-forwarded-for"];
     todo.createdAt = r.now(); // Set the field `createdAt` to the current time
     var result = yield r.table('todos').insert(todo, {returnChanges: true}).run(this._rdbConn);
 
@@ -89,7 +89,7 @@ function* update(next) {
     if ((todo == null) || (todo.id == null)) {
       throw new Error("The todo must have a field `id`.");
     }
-    if(todo.ip !== this.request.ip) {
+    if(todo.ip !== this.request.headers["x-forwarded-for"]) {
       throw new Error("The todo does not belong to you");
     }
 
@@ -110,7 +110,7 @@ function* del(next) {
     if ((todo == null) || (todo.id == null)) {
         throw new Error("The todo must have a field `id`.");
     }
-    if(todo.ip !== this.request.ip) {
+    if(todo.ip !== this.request.headers["x-forwarded-for"]) {
       throw new Error("The todo does not belong to you");
     }
 
