@@ -1,4 +1,4 @@
-const base = 'http://localhost:2200';
+const base = 'http://brianorwhatever.com/api';
 
 export const GET_TODOS    = { url: base+'/todo/get', method: 'GET' };
 export const CREATE_TODO  = { url: base+'/todo/new', method: 'POST' };
