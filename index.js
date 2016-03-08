@@ -37,83 +37,91 @@ app.use(closeConnection);
  * Create a RethinkDB connection, and save it in req._rdbConn
  */
 function* createConnection(next) {
-    try{
-        var conn = yield r.connect(config.rethinkdb);
-        this._rdbConn = conn;
-    }
-    catch(err) {
-        this.status = 500;
-        this.body = err.message || http.STATUS_CODES[this.status];
-    }
-    yield next;
+  try{
+    var conn = yield r.connect(config.rethinkdb);
+    this._rdbConn = conn;
+  }
+  catch(err) {
+    this.status = 500;
+    this.body = err.message || http.STATUS_CODES[this.status];
+  }
+  yield next;
 }
 
 // Retrieve all todos
 function* get(next) {
-    try{
-        var cursor = yield r.table('todos').orderBy({index: "createdAt"}).run(this._rdbConn);
-        var result = yield cursor.toArray();
-        this.body = JSON.stringify(result);
-    }
-    catch(e) {
-        this.status = 500;
-        this.body = e.message || http.STATUS_CODES[this.status];
-    }
-    yield next;
+  try{
+    var cursor = yield r.table('todos').getAll(this.request.ip, {index: 'ip'}).orderBy({index: "createdAt"}).run(this._rdbConn);
+    var result = yield cursor.toArray();
+    this.body = JSON.stringify(result);
+  }
+  catch(e) {
+    this.status = 500;
+    this.body = e.message || http.STATUS_CODES[this.status];
+  }
+  yield next;
 }
 
 // Create a new todo
 function* create(next) {
-    try{
-        var todo = yield parse(this);
+  try{
+    var todo = yield parse(this);
 
-        todo.createdAt = r.now(); // Set the field `createdAt` to the current time
-        var result = yield r.table('todos').insert(todo, {returnChanges: true}).run(this._rdbConn);
+    todo.ip = this.request.ip;
+    todo.createdAt = r.now(); // Set the field `createdAt` to the current time
+    var result = yield r.table('todos').insert(todo, {returnChanges: true}).run(this._rdbConn);
 
-        todo = result.changes[0].new_val; // todo now contains the previous todo + a field `id` and `createdAt`
-        this.body = JSON.stringify(todo);
-    }
-    catch(e) {
-        this.status = 500;
-        this.body = e.message || http.STATUS_CODES[this.status];
-    }
-    yield next;
+    todo = result.changes[0].new_val; // todo now contains the previous todo + a field `id` and `createdAt`
+    this.body = JSON.stringify(todo);
+  }
+  catch(e) {
+    this.status = 500;
+    this.body = e.message || http.STATUS_CODES[this.status];
+  }
+  yield next;
 }
 
 // Update a todo
 function* update(next) {
-    try{
-        var todo = yield parse(this);
-        delete todo._saving;
-        if ((todo == null) || (todo.id == null)) {
-            throw new Error("The todo must have a field `id`.");
-        }
+  try{
+    var todo = yield parse(this);
+    delete todo._saving;
+    if ((todo == null) || (todo.id == null)) {
+      throw new Error("The todo must have a field `id`.");
+    }
+    if(todo.ip !== this.request.ip) {
+      throw new Error("The todo does not belong to you");
+    }
 
-        var result = yield r.table('todos').get(todo.id).update(todo, {returnChanges: "always"}).run(this._rdbConn);
-        this.body = JSON.stringify(result.changes[0].new_val);
-    }
-    catch(e) {
-        this.status = 500;
-        this.body = e.message || http.STATUS_CODES[this.status];
-    }
-    yield next;
+    var result = yield r.table('todos').get(todo.id).update(todo, {returnChanges: "always"}).run(this._rdbConn);
+    this.body = JSON.stringify(result.changes[0].new_val);
+  }
+  catch(e) {
+    this.status = 500;
+    this.body = e.message || http.STATUS_CODES[this.status];
+  }
+  yield next;
 }
 
 // Delete a todo
 function* del(next) {
-    try{
-        var todo = yield parse(this);
-        if ((todo == null) || (todo.id == null)) {
-            throw new Error("The todo must have a field `id`.");
-        }
-        var result = yield r.table('todos').get(todo.id).delete().run(this._rdbConn);
-        this.body = JSON.stringify({success: true});
+  try{
+    var todo = yield parse(this);
+    if ((todo == null) || (todo.id == null)) {
+        throw new Error("The todo must have a field `id`.");
     }
-    catch(e) {
-        this.status = 500;
-        this.body = e.message || http.STATUS_CODES[this.status];
+    if(todo.ip !== this.request.ip) {
+      throw new Error("The todo does not belong to you");
     }
-    yield next;
+
+    var result = yield r.table('todos').get(todo.id).delete().run(this._rdbConn);
+    this.body = JSON.stringify({success: true});
+  }
+  catch(e) {
+    this.status = 500;
+    this.body = e.message || http.STATUS_CODES[this.status];
+  }
+  yield next;
 }
 
 /*
@@ -122,8 +130,6 @@ function* del(next) {
 function* closeConnection(next) {
   this._rdbConn.close();
 }
-
-
 
 
 // Connect to RethinkDB and start Koa
