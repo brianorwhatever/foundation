@@ -22,10 +22,10 @@ app.use(serve(__dirname+'/public'));
 app.use(createConnection);
 
 // Setup koa-router
-router.get('/todo/get', get);
-router.post('/todo/new', create);
-router.put('/todo/update', update);
-router.post('/todo/delete', del);
+router.get('/api/todo/get', get);
+router.post('/api/todo/new', create);
+router.put('/api/todo/update', update);
+router.post('/api/todo/delete', del);
 app
   .use(router.routes())
   .use(router.allowedMethods());
@@ -170,6 +170,6 @@ r.connect(config.rethinkdb, function(err, conn) {
 
 // Start Koa
 function startKoa() {
-    app.listen(config.koa.port);
+    app.listen(config.koa.port, '127.0.0.1');
     console.log('Listening on port '+config.koa.port);
 }
