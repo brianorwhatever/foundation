@@ -51,7 +51,7 @@ function* createConnection(next) {
 // Retrieve all todos
 function* get(next) {
   try{
-    var cursor = yield r.table('todos').getAll(this.request.ip, {index: 'ip'}).orderBy({index: "createdAt"}).run(this._rdbConn);
+    var cursor = yield r.table('todos').getAll(this.request.ip, {index: 'ip'}).run(this._rdbConn);
     var result = yield cursor.toArray();
     this.body = JSON.stringify(result);
   }
@@ -140,7 +140,7 @@ r.connect(config.rethinkdb, function(err, conn) {
         process.exit(1);
     }
 
-    r.table('todos').indexWait('createdAt').run(conn).then(function(err, result) {
+    r.table('todos').indexWait('ip').run(conn).then(function(err, result) {
         console.log("Table and index are available, starting koa...");
         startKoa();
     }).error(function(err) {
@@ -148,9 +148,9 @@ r.connect(config.rethinkdb, function(err, conn) {
         r.dbCreate(config.rethinkdb.db).run(conn).finally(function() {
             return r.tableCreate('todos').run(conn)
         }).finally(function() {
-            r.table('todos').indexCreate('createdAt').run(conn);
+            r.table('todos').indexCreate('ip').run(conn);
         }).finally(function(result) {
-            r.table('todos').indexWait('createdAt').run(conn)
+            r.table('todos').indexWait('ip').run(conn)
         }).then(function(result) {
             console.log("Table and index are available, starting koa...");
             startKoa();
