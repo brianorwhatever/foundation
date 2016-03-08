@@ -90,7 +90,7 @@ function* update(next) {
       throw new Error("The todo must have a field `id`.");
     }
 
-    var result = yield r.table('todos').filter({'ip': this.request.headers["x-forwarded-for"]}, {'id': todo.id}).update(todo, {returnChanges: "always"}).run(this._rdbConn);
+    var result = yield r.table('todos').filter({ip: this.request.headers["x-forwarded-for"]}, {id: todo.id}).update(todo, {returnChanges: "always"}).run(this._rdbConn);
     this.body = JSON.stringify(result.changes[0].new_val);
   }
   catch(e) {
@@ -108,7 +108,7 @@ function* del(next) {
         throw new Error("The todo must have a field `id`.");
     }
 
-    var result = yield r.table('todos').filter({'ip': this.request.headers["x-forwarded-for"]}, {'id': todo.id}).delete().run(this._rdbConn);
+    var result = yield r.table('todos').filter({ip: this.request.headers["x-forwarded-for"]}, {id: todo.id}).delete().run(this._rdbConn);
     this.body = JSON.stringify({success: true});
   }
   catch(e) {
