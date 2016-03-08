@@ -12,14 +12,18 @@ class TodoItem extends React.Component {
 
     render() {
         const { todo } = this.props;
-        const classes = classNames('item', {
+        const todoClasses = classNames('item', {
             'done' : todo.done
         });
+        const checkmarkClasses = classNames('checkmark', {
+            'done' : todo.done
+        });
+
         return (
             <div className="todoitem wood">
-              <div className="delete" onClick={this.handleDelete.bind(this)}></div>
-              <div className={classes}>{todo.todo}</div>
-              <div className="complete" onClick={this.handleClick.bind(this)}></div>
+              <div className={todoClasses}><span className="todo-text">{todo.todo}</span></div>
+              <div className={checkmarkClasses} onClick={this.handleClick.bind(this)}/>
+              <div className="delete" onClick={this.handleDelete.bind(this)}/>
             </div>
         );
     }

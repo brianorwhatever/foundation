@@ -7,17 +7,21 @@
   div {
     padding: 5px;
   }
-  .delete,.complete {
+  .delete,.checkmark {
     width: 14px;
     height: 14px;
-    background-size:cover;
+    margin-right: 10px;
+    background-size: cover;
     cursor: pointer;
   }
   .delete {
     background-image: url('../images/delete.png');
   }
-  .complete {
+  .checkmark {
     background-image: url('../images/check.png');
+    &.done {
+      visibility: hidden;
+    }
   }
   .item {
     flex: 1;
@@ -28,5 +32,9 @@
   }
   .done {
     text-decoration: line-through;
+    color: #33cc33;
+  }
+  .todo-text {
+    color: $text-color;
   }
 }
