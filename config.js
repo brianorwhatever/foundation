@@ -6,6 +6,6 @@ module.exports = {
         db: "foundation"
     },
     koa: {
-        port: 2200
+        port: process.env.PORT || 2200
     }
 }
