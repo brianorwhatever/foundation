@@ -3,14 +3,30 @@
   margin: 10px 0;
   max-width: $todosWidth;
   display: flex;
+  align-items: center;
   div {
     padding: 5px;
+  }
+  .delete,.complete {
+    width: 14px;
+    height: 14px;
+    background-size:cover;
+    cursor: pointer;
+  }
+  .delete {
+    background-image: url('../images/delete.png');
+  }
+  .complete {
+    background-image: url('../images/check.png');
   }
   .item {
     flex: 1;
     text-align: center;
     margin: 0 10px;
     word-wrap: break-word;
-    width: 300px;
+    max-width: 300px;
+  }
+  .done {
+    text-decoration: line-through;
   }
 }

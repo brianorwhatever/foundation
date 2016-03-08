@@ -12,14 +12,14 @@ class TodoItem extends React.Component {
 
     render() {
         const { todo } = this.props;
-        const classes = classNames('todo-item', {
+        const classes = classNames('item', {
             'done' : todo.done
         });
         return (
             <div className="todoitem wood">
-              <div className="delete">x</div>
-              <div className="item" onClick={this.handleClick.bind(this)}>{todo.todo}</div>
-              <div className="complete" onClick={this.handleDelete.bind(this)}>✓</div>
+              <div className="delete" onClick={this.handleDelete.bind(this)}></div>
+              <div className={classes}>{todo.todo}</div>
+              <div className="complete" onClick={this.handleClick.bind(this)}></div>
             </div>
         );
     }
