@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <AppHeader title={'Todotoo'}/>
+          <AppHeader title={'ToDuty'}/>
           <Todos />
         </div>
       </Provider>
